@@ -7,10 +7,14 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.jTinder.js
+//= require jquery.transform2d.js
+//= require tinysort.js
+//= require jquery.tinysort.js
 //= require_tree .
