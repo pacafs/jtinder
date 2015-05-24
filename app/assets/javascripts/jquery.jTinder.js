@@ -7,6 +7,8 @@
  * Licensed under GPL Version 2.
  * https://github.com/do-web/jTinder/blob/master/LICENSE
  */
+
+ 
 ;(function ($, window, document, undefined) {
 	var pluginName = "jTinder",
 		defaults = {
@@ -62,13 +64,12 @@
 			panes.eq(current_pane).hide().remove();
 			current_pane = index;
 
-		    var li_count = $( "#tinderslide ul li" ).length;
+		    var li_count = $( "#tinderslide > ul > li" ).length;
 			//Custom -> Add more elements if reaching the end!
-		    if( li_count < 2 ) {
+		    if( li_count < 3 ) {
         	    	
 		    		if( li_count == 0 ) {
-		    				
-		    				$('.sk-spinner').show();
+
 		    			    // make an ajax call passing along our last user id
 					        $.ajax({
 					            // make a get request to the server
@@ -80,14 +81,14 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	 $('.sk-spinner').hide();
+					            	// Do something on success!
 					            }
 
 					        });
 		    		
 		    		} else {
 
-        	    	var last_id = panes.eq(current_pane).attr("id");
+        	    	var last_id = $( "#tinderslide > ul > li" ).first().attr("id"); //panes.eq(current_pane).attr("id");
 						
 							// make an ajax call passing along our last user id
 					        $.ajax({
@@ -105,7 +106,7 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	
+					            	// Do somethig on success!
 					            }
 
 					        });

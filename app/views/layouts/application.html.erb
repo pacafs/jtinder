@@ -5,66 +5,119 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
 </head>
 
-<body>
+<body>	
 
-<% if current_user %>
-	<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-<% end %>
+	<% if current_user %>
+		<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+			<ul class="nav navmenu-nav">
+				<li class="<%= if params[:controller] == "users" && params[:action] == "index" then "active" end %> nav-btn">
+					<%= link_to root_path do %><i class="fa fa-users"></i> Discover <% end %>
+				</li>
+				<li class="<%= if params[:controller] == "matches" && params[:action] == "index" then "active" end %> nav-btn">
+					<%= link_to matches_path do %><i class="fa fa-heart"></i> Matches <% end %>
+				</li>
+				<li class="<%= if params[:controller] == "users" && params[:action] == "edit" then "active" end %> nav-btn">
+					<%= link_to edit_user_path(current_user) do %><i class="fa fa-cog"></i> Settings <% end %>
+				</li>
+				<li class="nav-btn">
+					<%= link_to '/sign_out', method: :delete do %><i class="fa fa-sign-out"></i> Log Out <% end %>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="navbar navbar-default navbar-fixed-top">
+			
+			<button type="button" class="navbar-toggle button-nav" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+				<i class="fa fa-cog"></i>
+			</button>
+			
+			<%= link_to root_path, class: "navbar-brand" do %>
+				<%= image_tag "logo.png", alt: "Tinstuk Logo", class: "logo-brand" %>
+			<% end %>
+			
+			<button type="button" class="navbar-toggle pull-right button-nav myclass">
+				<%= link_to matches_path do %><i class="fa fa-heart"></i><% end %>
+			</button>
+			
+		</div>
+
+	<% else %>
+		<a class="navbar-brand" href="#">
+			<%= image_tag "logo_white.png", alt: "Tinstuk Logo", class: "logo-brand" %>
+		</a>
+	<% end %>
+
+
 
 <%= yield %>
 
+
 <script type="text/javascript">
 
-	// Hide Spinner!
-	$('.sk-spinner').hide();
-	// Sort the li elements by id
-	$("#tinderslide > ul li").tsort("",{attr:"id"});
+	// Tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+	// Sort the li elements by id //
+	$("#tinderslide > ul li").tsort({attr:"id"});
 	
-	/**
+	/*
+	 
 	 * jTinder initialization
+
 	*/
 
 	$("#tinderslide").jTinder({
 		// dislike callback
 	    onDislike: function (item) {
-		    // set the status text
-	        $('#status').html('Dislike image ' + (item.index()+1));
+	    	//
 	    },
+		
 		// like callback
 	    onLike: function (item) {
-		    // set the status text
-	        $('#status').html('Like image ' + (item.index()+1));
+	    	var myId = $("#tinderslide > ul li").last().attr("id");
+	    	$("#user_" + myId)[0].click();
 	    },
+
 		animationRevertSpeed: 200,
 		animationSpeed: 400,
 		threshold: 1,
 		likeSelector: '.like',
 		dislikeSelector: '.dislike'
+
 	});
 
 	/**
-	 * Set button action to trigger jTinder like & dislike.
-	 */
+	  * Set button action to trigger jTinder like & dislike.
+	*/
 
 	$('.actions .like, .actions .dislike').click(function(e){
 		e.preventDefault();
 		$("#tinderslide").jTinder($(this).attr('class'));
 	});
 
+	//Hover Effect//
+	var ready;
+	ready = function() {
+	 	
+	 	
+		$(".nav-btn").hover(function(){
+		    $(this).addClass("active2");
+		    },function(){
+		    $(this).removeClass("active2");
+		});
+
+	};
+
+	$(document).ready(ready);
+	$(document).on('page:load', ready);
+	
 </script>
 
 
 </body>
 </html>
+
 
 

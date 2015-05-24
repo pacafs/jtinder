@@ -1,2 +1,36 @@
-<h1>Welcome</h1>
-<%= link_to 'Log In', new_user_session_path %>
+<div class="bg-dark"></div>
+<div class="home-information">
+	<h1 class="slogan">Any swipe can change your life.</h1>
+	<%= link_to "auth/facebook", class: "btn btn-social btn-lg btn-facebook" do %><i class="fa fa-facebook"></i> Sign in with Facebook <% end %>
+	<br /><br />
+</div>
+
+
+
+<!-- SLIDER BACKGROUND -->
+<script type="text/javascript">
+
+	jQuery(function($){
+
+		$.supersized({
+
+			// Functionality
+			slide_interval          :   4000,		// Length between transitions
+			transition              :   1, 			// 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+			transition_speed		:	700,		// Speed of transition
+
+			// Components							
+			slide_links				:	'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
+			slides 					:  	[			// Slideshow Images
+			{image : 'assets/bg.jpg'},
+			{image : 'assets/bg2.jpg'},
+			{image : 'assets/bg3.jpg'}
+
+			]
+					
+		});
+	});
+
+</script>
+
+

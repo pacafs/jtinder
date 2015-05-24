@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
-  
-  root 'home#index'
 
-  devise_for :users, {registrations: 'registrations'}
-  resources :users, only:[:index]
+  root 'home#index'
+  
+  resources :users do
+    member do
+      get 'profile'
+    end
+  end
+  
+
+
+  resources :matches, only: [:index]
+
+  post    'create_friendships' => 'friendships#create'
+  delete  'destroy_friendships' => 'friendships#destroy'
+
+  get 'auth/facebook/callback', to: "sessions#create"
+  
+  match 'sign_out', to: 'sessions#destroy', via: :delete
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -59,3 +74,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+
+
+
