@@ -73,6 +73,8 @@ gem "cancan"
 
 gem "figaro"
 
+gem 'therubyracer'
+
 ## --- ##
 
 
