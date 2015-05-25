@@ -73,7 +73,7 @@ gem "cancan"
 
 gem "figaro"
 
-gem 'therubyracer'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 ## --- ##
 
