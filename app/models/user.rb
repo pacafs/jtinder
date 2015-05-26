@@ -51,15 +51,15 @@ class User < ActiveRecord::Base
       uid: auth['uid'],
       name: auth['info']['name'],
       gender: auth['extra']['raw_info']['gender'],
-      date_of_birth: Date.strptime( auth['extra']['raw_info']['birthday'], '%m/%d/%Y'),
+      date_of_birth: auth['extra']['raw_info']['birthday'].present? ? Date.strptime( auth['extra']['raw_info']['birthday'], '%m/%d/%Y') : nil,
       location: auth['info']['location'],
       bio: auth['extra']['raw_info']['bio']
     )
   end
 
-  def self.gender(current_user)
+  def self.gender(user)
     
-    case current_user.interest
+    case user.interest
       when "Male"
         where('gender = ?', 'male')
       when "Female"
