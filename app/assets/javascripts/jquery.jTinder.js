@@ -64,6 +64,7 @@
 			panes.eq(current_pane).hide().remove();
 			current_pane = index;
 
+			$(".spinner").show();
 		    var li_count = $( "#tinderslide > ul > li" ).length;
 			//Custom -> Add more elements if reaching the end!
 		    if( li_count < 3 ) {
@@ -81,7 +82,7 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	// Do something on success!
+					            	$(".spinner").hide();// Do something on success!
 					            }
 
 					        });
