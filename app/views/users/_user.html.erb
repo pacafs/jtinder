@@ -3,7 +3,7 @@
     <div class="user-name pull-left">
     	<%= link_to profile_user_path(user.id) do %><b><%= name(user) %></b>, <%= age(user) %></a><% end %>
     </div>
-    <div class="user-location text-right"><i class="fa fa-map-marker"></i><%= location(user) %></div>
+    <div class="user-location text-right"><i class="fa fa-map-marker"></i> <%= location(user) %></div>
     <div class="like"></div>
     <div class="dislike"></div>
     <%= link_to "", create_friendships_path(friend_id: user.id), id: "user_#{user.id}", method: :post, :remote => true %>
