@@ -107,7 +107,7 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	// Do somethig on success!
+					            	$(".spinner").hide(); // Do somethig on success!
 					            }
 
 					        });
