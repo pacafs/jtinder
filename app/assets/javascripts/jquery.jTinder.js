@@ -82,7 +82,7 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	$(".spinner").hide();// Do something on success!
+					            	$(".spinner").hide(); // Do something on success!
 					            }
 
 					        });
