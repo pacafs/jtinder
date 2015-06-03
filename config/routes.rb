@@ -5,21 +5,23 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'profile'
+      get 'matches'
     end
   end
+
+  match 'sign_out', to: 'sessions#destroy', via: :delete
   
-
-
-  resources :matches, only: [:index]
+  get 'auth/facebook/callback', to: "sessions#create"
+  
+  get 'matches/get_email' => "users#get_email"
 
   post    'create_friendships' => 'friendships#create'
   delete  'destroy_friendships' => 'friendships#destroy'
 
-  get 'auth/facebook/callback', to: "sessions#create"
   
-  match 'sign_out', to: 'sessions#destroy', via: :delete
+  
 
-  get 'matches/get_email' => 'matches#get_email'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

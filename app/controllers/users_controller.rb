@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 	
 	before_action :require_login
-	before_action :set_user, only:[:edit, :profile, :update, :destroy]
+	before_action :set_user, only:[:edit, :profile, :update, :destroy, :get_email]
 
 	def index
 
 	    if params[:id]
-	      @users = User.gender(current_user).where('id < ?', params[:id]).where.not(id: current_user.id).limit(5) - ( current_user.friendships.where(state: "pending").map(&:friend) + current_user.friendships.where(state: "ACTIVE").map(&:friend) + current_user.inverse_friendships.where(state: "ACTIVE").map(&:user) )
+	      @users = User.gender(current_user).where('id < ?', params[:id]).except(current_user).limit(10) - current_user.matches(current_user)
 	    else
-	      @users = User.gender(current_user).where.not(id: current_user.id).limit(5) - ( current_user.friendships.where(state: "pending").map(&:friend) + current_user.friendships.where(state: "ACTIVE").map(&:friend) + current_user.inverse_friendships.where(state: "ACTIVE").map(&:user) )
+	      @users = User.gender(current_user).except(current_user).limit(10) - current_user.matches(current_user)
 	    end
 
 
@@ -49,6 +49,15 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def matches
+		@matches = current_user.friendships.where(state: "ACTIVE").map(&:friend) + current_user.inverse_friendships.where(state: "ACTIVE").map(&:user)
+	end
+
+	def get_email
+	  	respond_to do |format|
+	      format.js
+	    end
+  	end
 
 
 	private
@@ -62,3 +71,4 @@ class UsersController < ApplicationController
 	end
 
 end
+

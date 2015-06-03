@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     redirect_to users_path
   end
 
+
   private
 
   def current_user
@@ -14,10 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-	if session[:user_id] == nil
-	  redirect_to root_path
-	end
+  	if session[:user_id] == nil
+  	  redirect_to root_path
+  	end
   end
+
 
   helper_method :require_login
   helper_method :current_user

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jtinder</title>
+  <title>Tinstuk</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -13,13 +13,13 @@
 	<% if current_user %>
 		<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
 			<ul class="nav navmenu-nav">
-				<li class="<%= if params[:controller] == "users" && params[:action] == "index" then "active" end %> nav-btn">
+				<li class="<%= if params[:action] == "index" then "active" end %> nav-btn">
 					<%= link_to root_path do %><i class="fa fa-users"></i> Discover <% end %>
 				</li>
-				<li class="<%= if params[:controller] == "matches" && params[:action] == "index" then "active" end %> nav-btn">
-					<%= link_to matches_path do %><i class="fa fa-heart"></i> Matches <% end %>
+				<li class="<%= if params[:action] == "matches" then "active" end %> nav-btn">
+					<%= link_to matches_user_path(current_user) do %><i class="fa fa-heart"></i> Matches <% end %>
 				</li>
-				<li class="<%= if params[:controller] == "users" && params[:action] == "edit" then "active" end %> nav-btn">
+				<li class="<%= if params[:action] == "edit" then "active" end %> nav-btn">
 					<%= link_to edit_user_path(current_user) do %><i class="fa fa-cog"></i> Settings <% end %>
 				</li>
 				<li class="nav-btn">
@@ -39,7 +39,7 @@
 			<% end %>
 			
 			<button type="button" class="navbar-toggle pull-right button-nav myclass">
-				<%= link_to matches_path do %><i class="fa fa-heart"></i><% end %>
+				<%= link_to matches_user_path(current_user) do %><i class="fa fa-heart"></i><% end %>
 			</button>
 			
 		</div>
@@ -61,6 +61,7 @@
 	$(".spinner").hide();
 	// Tooltip
 	$('[data-toggle="tooltip"]').tooltip();
+	
 	// Sort the li elements by id //
 	$("#tinderslide > ul li").tsort({attr:"id"});
 	
