@@ -83,9 +83,6 @@ class User < ActiveRecord::Base
 
   #/ Query methods \#
 
-
-
-
   private
 
   def self.process_uri(uri)
@@ -95,6 +92,7 @@ class User < ActiveRecord::Base
   end
 
 end
+
 
 
 
