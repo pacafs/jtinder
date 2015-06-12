@@ -68,7 +68,9 @@
 			$(".spinner").show();
 		    var li_count = $( "#tinderslide > ul > li" ).length;
 			//Custom -> Add more elements if reaching the end!
-		    if ( li_count < 3 ) {
+		    if ( li_count < 3 && load_more == true) {
+
+        	    load_more = false;
         	    	
 		    		if( li_count == 0 ) {
 
@@ -83,15 +85,14 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	$(".spinner").hide(); // Do something on success!
+					            	$(".spinner").hide();
 					            }
 
 					        });
 		    		
 		    		} else {
 
-        	    	var last_id = $( "#tinderslide > ul > li" ).first().attr("id"); //panes.eq(current_pane).attr("id");
-						
+        	    	var last_id   = $( "#tinderslide > ul > li" ).first().attr("id");
 							// make an ajax call passing along our last user id
 					        $.ajax({
 					 
@@ -108,7 +109,7 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	$(".spinner").hide(); // Do somethig on success!
+					            	$(".spinner").hide();
 					            }
 
 					        });
