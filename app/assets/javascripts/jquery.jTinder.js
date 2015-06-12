@@ -69,7 +69,7 @@
 			$(".spinner").show();
 		    var li_count = $( "#tinderslide > ul > li" ).length;
 			//Custom -> Add more elements if reaching the end!
-		    if ( li_count < 3 && load_more == true) {
+		    if ( li_count < 5 && load_more == true) {
 
 		    		if( li_count == 0 ) {
 
