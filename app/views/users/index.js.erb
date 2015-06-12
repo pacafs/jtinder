@@ -2,8 +2,8 @@ $( "#tinderslide ul" ).append('<%= escape_javascript(render(:partial => @users, 
 $("#tinderslide > ul li").tsort({attr:"id"});
 $("#tinderslide").jTinder();
 
-$("#tinderslide > ul").bind("DOMSubtreeModified",function(){
-	load_more = true;
-});
+setTimeout(function(){ load_more = true; }, 3000);
+
+
 
 
