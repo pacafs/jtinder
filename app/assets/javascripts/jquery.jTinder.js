@@ -65,15 +65,15 @@
 			current_pane = index;
 
 			//My code //
+			
 			$(".spinner").show();
 		    var li_count = $( "#tinderslide > ul > li" ).length;
 			//Custom -> Add more elements if reaching the end!
 		    if ( li_count < 3 && load_more == true) {
 
-        	    load_more = false;
-        	    	
 		    		if( li_count == 0 ) {
 
+		    				load_more = false;
 		    			    // make an ajax call passing along our last user id
 					        $.ajax({
 					            // make a get request to the server
@@ -92,6 +92,7 @@
 		    		
 		    		} else {
 
+		    		load_more = false;	
         	    	var last_id   = $( "#tinderslide > ul > li" ).first().attr("id");
 							// make an ajax call passing along our last user id
 					        $.ajax({
