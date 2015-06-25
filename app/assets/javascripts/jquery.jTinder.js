@@ -69,31 +69,9 @@
 			$(".spinner").show();
 		    var li_count = $( "#tinderslide > ul > li" ).length;
 			//Custom -> Add more elements if reaching the end!
-		    if ( li_count < 5 && load_more == true) {
+		    if ( li_count == 5 ) {
 
-		    		if( li_count == 0 ) {
-
-		    				
-		    			    // make an ajax call passing along our last user id
-					        $.ajax({
-					            // make a get request to the server
-					            type: "GET",
-					            // get the url from the href attribute of our link
-					            url: "/users",
-					            // the response will be a script
-					            dataType: "script",
-					 
-					            // upon success 
-					            success: function (e) {
-					            	load_more = false;
-					            	$(".spinner").hide();
-					            }
-
-					        });
-		    		
-		    		} else {
-
-        	    	var last_id   = $( "#tinderslide > ul > li" ).first().attr("id");
+						var last_id = $( "#tinderslide > ul > li" ).first().attr("id");
 							// make an ajax call passing along our last user id
 					        $.ajax({
 					 
@@ -110,13 +88,31 @@
 					 
 					            // upon success 
 					            success: function (e) {
-					            	load_more = false;
 					            	$(".spinner").hide();
 					            }
 
 					        });
-					}
-      		} 	
+
+		    		
+		    } else if (li_count == 0) {
+
+
+					        $.ajax({
+					            // make a get request to the server
+					            type: "GET",
+					            // get the url from the href attribute of our link
+					            url: "/users",
+					            // the response will be a script
+					            dataType: "script",
+					 
+					            // upon success 
+					            success: function (e) {
+					            	$(".spinner").hide();
+					            }
+
+					        });
+
+			} // End if li_count
 
 		},
 
